@@ -61,6 +61,7 @@ const vibeOptions = ["main character", "chaotic good", "photo dump", "night owl"
 function FriendsSpace() {
   const [user, setUser] = useState<{ id: string; email?: string } | null>(null);
   const [profile, setProfile] = useState<Profile | null>(null);
+  const [activeInviteCode, setActiveInviteCode] = useState("");
   const [authReady, setAuthReady] = useState(false);
   const [authMode, setAuthMode] = useState<"join" | "login">("join");
   const [authBusy, setAuthBusy] = useState(false);
@@ -85,6 +86,7 @@ function FriendsSpace() {
   const [shareBody, setShareBody] = useState("");
   const [shareFile, setShareFile] = useState<File | null>(null);
   const [sharing, setSharing] = useState(false);
+  const [avatarBusy, setAvatarBusy] = useState(false);
   const feedFileInput = useRef<HTMLInputElement>(null);
   const sharedFileInput = useRef<HTMLInputElement>(null);
   const chatEnd = useRef<HTMLDivElement>(null);
@@ -98,6 +100,11 @@ function FriendsSpace() {
   const loadMembers = useCallback(async () => {
     const { data, error } = await supabase.from("profiles").select("*").order("created_at", { ascending: true });
     if (!error) setMembers(data ?? []);
+  }, []);
+
+  const loadInviteCode = useCallback(async () => {
+    const { data } = await supabase.from("group_invites").select("invite_code").eq("is_active", true).order("created_at", { ascending: false }).limit(1).maybeSingle();
+    if (data?.invite_code) setActiveInviteCode(data.invite_code);
   }, []);
 
   const loadPosts = useCallback(async () => {
@@ -173,8 +180,23 @@ function FriendsSpace() {
   useEffect(() => {
     if (!profile) return;
     setFeedBusy(true);
-    void Promise.all([loadMembers(), loadPosts()]).finally(() => setFeedBusy(false));
-  }, [loadMembers, loadPosts, profile]);
+    void Promise.all([loadMembers(), loadPosts(), loadInviteCode()]).finally(() => setFeedBusy(false));
+  }, [loadInviteCode, loadMembers, loadPosts, profile]);
+
+  useEffect(() => {
+    if (!user || profile) return;
+    try {
+      const pending = sessionStorage.getItem("nightshift-pending-join");
+      if (!pending) return;
+      const details = JSON.parse(pending) as { inviteCode?: string; username?: string; bio?: string; vibes?: string[] };
+      setInviteCode(details.inviteCode ?? "");
+      setUsername(details.username ?? "");
+      setBio(details.bio ?? "");
+      setPickedVibes(details.vibes ?? []);
+    } catch {
+      sessionStorage.removeItem("nightshift-pending-join");
+    }
+  }, [profile, user]);
 
   useEffect(() => {
     if (!profile) return;
@@ -206,6 +228,7 @@ function FriendsSpace() {
         const { data, error } = await supabase.auth.signUp({ email: email.trim(), password, options: { emailRedirectTo: window.location.origin } });
         if (error) throw error;
         if (!data.session) {
+          sessionStorage.setItem("nightshift-pending-join", JSON.stringify({ inviteCode: inviteCode.trim(), username: username.trim(), bio: bio.trim(), vibes: pickedVibes }));
           setAuthMessage("Check your email to confirm your account, then come back to join the group.");
           setAuthMode("login");
           return;
@@ -215,6 +238,7 @@ function FriendsSpace() {
           p_invite_code: inviteCode.trim(), p_username: username.trim(), p_bio: bio.trim(), p_vibe_tags: pickedVibes,
         });
         if (joinError) throw joinError;
+        sessionStorage.removeItem("nightshift-pending-join");
         setAuthMessage("You’re in. Welcome to the group.");
       } else {
         const { data, error } = await supabase.auth.signInWithPassword({ email: email.trim(), password });
@@ -244,6 +268,7 @@ function FriendsSpace() {
     else {
       const { data } = await supabase.from("profiles").select("*").eq("id", user.id).single();
       setProfile(data);
+      sessionStorage.removeItem("nightshift-pending-join");
       setAuthMessage("");
     }
     setAuthBusy(false);
@@ -258,6 +283,29 @@ function FriendsSpace() {
     const { error } = await supabase.storage.from(uploadBucket).upload(path, file, { upsert: false });
     if (error) throw error;
     return path;
+  }
+
+  async function updateAvatar(event: ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    if (!file || !user) return;
+    if (!file.type.startsWith("image/")) { setPageMessage("Choose an image for your profile photo."); return; }
+    setAvatarBusy(true); setPageMessage("");
+    try {
+      const avatarPath = await uploadFile(file);
+      const { error } = await supabase.from("profiles").update({ avatar_path: avatarPath }).eq("id", user.id);
+      if (error) throw error;
+      const { data } = await supabase.from("profiles").select("*").eq("id", user.id).single();
+      setProfile(data);
+    } catch (error) { setPageMessage(error instanceof Error ? error.message : "Couldn’t update your photo."); }
+    finally { setAvatarBusy(false); event.target.value = ""; }
+  }
+
+  async function copyInvite() {
+    if (!activeInviteCode) { setPageMessage("Your invite code isn’t ready yet."); return; }
+    try {
+      await navigator.clipboard.writeText(activeInviteCode);
+      setPageMessage(`Invite code copied: ${activeInviteCode}`);
+    } catch { setPageMessage(`Your invite code is ${activeInviteCode}`); }
   }
 
   async function submitPost(event: FormEvent<HTMLFormElement>) {
@@ -345,6 +393,8 @@ function FriendsSpace() {
               {authMode === "join" && <>
                 <FieldLabel label="Your invite code"><Input autoComplete="off" required value={inviteCode} onChange={(event) => setInviteCode(event.target.value.toUpperCase())} placeholder="ASK A FRIEND" /></FieldLabel>
                 <FieldLabel label="Username"><div className="input-prefix"><AtSign size={16} /><Input required maxLength={24} autoComplete="username" value={username} onChange={(event) => setUsername(event.target.value.replace(/[^a-zA-Z0-9_]/g, ""))} placeholder="yourname" /></div></FieldLabel>
+                <FieldLabel label="A little about you"><Textarea maxLength={160} value={bio} onChange={(event) => setBio(event.target.value)} placeholder="What’s your current thing?" rows={2} /></FieldLabel>
+                <div className="field-label"><span>Your vibe</span><div className="vibe-options">{vibeOptions.map((vibe) => <button className={`vibe-chip ${pickedVibes.includes(vibe) ? "selected" : ""}`} type="button" key={vibe} onClick={() => setPickedVibes((current) => current.includes(vibe) ? current.filter((item) => item !== vibe) : current.length < 5 ? [...current, vibe] : current)}>{pickedVibes.includes(vibe) && <Check size={12} />}{vibe}</button>)}</div></div>
                 <FieldLabel label="Email"><Input type="email" required autoComplete="email" value={email} onChange={(event) => setEmail(event.target.value)} placeholder="you@example.com" /></FieldLabel>
                 <FieldLabel label="Password"><Input type="password" required minLength={8} autoComplete="new-password" value={password} onChange={(event) => setPassword(event.target.value)} placeholder="At least 8 characters" /></FieldLabel>
               </>}
