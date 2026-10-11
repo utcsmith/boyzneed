@@ -14,13 +14,246 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      group_invites: {
+        Row: {
+          created_at: string
+          id: string
+          invite_code: string
+          is_active: boolean
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          invite_code: string
+          is_active?: boolean
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          invite_code?: string
+          is_active?: boolean
+        }
+        Relationships: []
+      }
+      group_messages: {
+        Row: {
+          author_id: string
+          body: string
+          created_at: string
+          id: string
+        }
+        Insert: {
+          author_id: string
+          body: string
+          created_at?: string
+          id?: string
+        }
+        Update: {
+          author_id?: string
+          body?: string
+          created_at?: string
+          id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "group_messages_author_id_fkey"
+            columns: ["author_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      post_comments: {
+        Row: {
+          author_id: string
+          body: string
+          created_at: string
+          id: string
+          post_id: string
+        }
+        Insert: {
+          author_id: string
+          body: string
+          created_at?: string
+          id?: string
+          post_id: string
+        }
+        Update: {
+          author_id?: string
+          body?: string
+          created_at?: string
+          id?: string
+          post_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "post_comments_author_id_fkey"
+            columns: ["author_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "post_comments_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      post_likes: {
+        Row: {
+          created_at: string
+          post_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          post_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          post_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "post_likes_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "posts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "post_likes_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      posts: {
+        Row: {
+          author_id: string
+          caption: string
+          created_at: string
+          id: string
+          image_path: string | null
+        }
+        Insert: {
+          author_id: string
+          caption?: string
+          created_at?: string
+          id?: string
+          image_path?: string | null
+        }
+        Update: {
+          author_id?: string
+          caption?: string
+          created_at?: string
+          id?: string
+          image_path?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "posts_author_id_fkey"
+            columns: ["author_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_path: string | null
+          bio: string
+          created_at: string
+          id: string
+          username: string
+          vibe_tags: string[]
+        }
+        Insert: {
+          avatar_path?: string | null
+          bio?: string
+          created_at?: string
+          id: string
+          username: string
+          vibe_tags?: string[]
+        }
+        Update: {
+          avatar_path?: string | null
+          bio?: string
+          created_at?: string
+          id?: string
+          username?: string
+          vibe_tags?: string[]
+        }
+        Relationships: []
+      }
+      shared_items: {
+        Row: {
+          author_id: string
+          body: string
+          created_at: string
+          id: string
+          item_type: string
+          mime_type: string | null
+          size_bytes: number | null
+          storage_path: string | null
+          title: string
+        }
+        Insert: {
+          author_id: string
+          body?: string
+          created_at?: string
+          id?: string
+          item_type: string
+          mime_type?: string | null
+          size_bytes?: number | null
+          storage_path?: string | null
+          title: string
+        }
+        Update: {
+          author_id?: string
+          body?: string
+          created_at?: string
+          id?: string
+          item_type?: string
+          mime_type?: string | null
+          size_bytes?: number | null
+          storage_path?: string | null
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "shared_items_author_id_fkey"
+            columns: ["author_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      is_group_member: { Args: never; Returns: boolean }
+      join_friends_group: {
+        Args: {
+          p_bio?: string
+          p_invite_code: string
+          p_username: string
+          p_vibe_tags?: string[]
+        }
+        Returns: string
+      }
     }
     Enums: {
       [_ in never]: never
