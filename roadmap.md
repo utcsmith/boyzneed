@@ -1,4 +1,4 @@
 # Style refresh
-- [ ] Add selectable themes with remembered preference.
-- [ ] Refresh entry and community styling without changing sharing or account flows.
-- [ ] Verify theme controls and existing page checks.
+- [x] Add selectable themes with remembered preference.
+- [x] Refresh entry and community styling without changing sharing or account flows.
+- [x] Verify theme controls and existing page checks.
