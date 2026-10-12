@@ -28,6 +28,8 @@ import { lovable } from "@/integrations/lovable";
 import { supabase } from "@/integrations/supabase/client";
 import type { Tables } from "@/integrations/supabase/types";
 import nightshiftCharm from "@/assets/nightshift-charm.png";
+import nightshiftStudio from "@/assets/nightshift-studio.jpg";
+import { ThemePicker } from "@/components/theme-picker";
 
 type Profile = Tables<"profiles">;
 type FeedPost = Tables<"posts"> & {
@@ -374,13 +376,14 @@ function FriendsSpace() {
   if (!user) {
     return (
       <main className="entry-page">
-        <div className="entry-nav"><Brand /><span className="private-mark"><span className="status-dot" /> FRIENDS ONLY</span></div>
+        <img className="entry-scene" src={nightshiftStudio} alt="Chrome star sculpture with lime and pink charms" width={1536} height={1024} />
+        <div className="entry-nav"><Brand /><div className="entry-nav-actions"><span className="private-mark"><span className="status-dot" /> FRIENDS ONLY</span><ThemePicker /></div></div>
         <div className="entry-layout">
           <section className="entry-copy">
             <div className="eyebrow"><Sparkles size={14} /> YOUR PEOPLE. YOUR SPACE.</div>
-            <h1>The group chat<br />grew <span>up.</span></h1>
+            <h1>nightshift<span>.<br />your people.</span></h1>
             <p className="entry-subtitle">A little corner for the people who get you.</p>
-            <img className="entry-mascot" src={nightshiftCharm} alt="Chrome star charm in lime and pink" width={340} height={340} />
+            <div className="entry-stamp"><span>✳</span> ONLY THE REAL ONES</div>
             <div className="entry-footnote"><Zap size={14} /> GOOD VIBES, NO STRANGERS</div>
           </section>
           <section className="auth-panel" aria-label="Sign in or join the group">
@@ -418,7 +421,7 @@ function FriendsSpace() {
   if (!profile) {
     return (
       <main className="entry-page profile-setup">
-        <div className="entry-nav"><Brand /><Button variant="ghost" size="icon" title="Sign out" aria-label="Sign out" onClick={() => void signOut()}><LogOut size={18} /></Button></div>
+        <div className="entry-nav"><Brand /><div className="entry-nav-actions"><ThemePicker /><Button variant="ghost" size="icon" title="Sign out" aria-label="Sign out" onClick={() => void signOut()}><LogOut size={18} /></Button></div></div>
         <section className="setup-panel">
           <div className="eyebrow"><Sparkles size={14} /> ONE LAST THING</div>
           <h1>You’re almost<br /><span>in.</span></h1>
@@ -453,6 +456,7 @@ function FriendsSpace() {
       </aside>
 
       <main className={`main-content ${view === "chat" ? "chat-main" : ""}`}>
+        <div className="community-style-bar"><span>✳ &nbsp; NIGHTSHIFT SOCIAL CLUB</span><ThemePicker /></div>
         <header className="mobile-topbar"><Brand /><button type="button" className="mobile-profile" onClick={() => setView("profile")}><Avatar profile={profile} size="sm" /></button></header>
         <div className="content-heading"><div><div className="eyebrow"><span className="status-dot" /> YOUR LITTLE CORNER OF THE INTERNET</div><h1>{view === "home" ? <>the <span>feed.</span></> : view === "chat" ? <>say <span>anything.</span></> : view === "files" ? <>good <span>things.</span></> : <>that’s <span>you.</span></>}</h1><p>{view === "home" ? "The latest from your favorite people." : view === "chat" ? "The group chat, minus the chaos of 200 unread texts." : view === "files" ? "Notes, files, links — all in one spot." : "Your corner of the group."}</p></div><div className="heading-date"><span className="live-badge"><span className="status-dot" /> CLOSE FRIENDS</span><span>EST. AFTER THE GROUP CHAT</span></div></div>
 
