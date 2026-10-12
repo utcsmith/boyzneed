@@ -28,6 +28,8 @@ import { lovable } from "@/integrations/lovable";
 import { supabase } from "@/integrations/supabase/client";
 import type { Tables } from "@/integrations/supabase/types";
 import nightshiftCharm from "@/assets/nightshift-charm.png";
+import nightshiftStudio from "@/assets/nightshift-studio.jpg";
+import { ThemePicker } from "@/components/theme-picker";
 
 type Profile = Tables<"profiles">;
 type FeedPost = Tables<"posts"> & {
@@ -59,7 +61,7 @@ const uploadBucket = "friends-share";
 const vibeOptions = ["main character", "chaotic good", "photo dump", "night owl", "soft launch", "always outside"];
 
 function FriendsSpace() {
-  const [user, setUser] = useState<{ id: string; email?: string } | null>(null);
+  const [user, setUser] = useState<{ id: string; email?: string | undefined } | null>(null);
   const [profile, setProfile] = useState<Profile | null>(null);
   const [activeInviteCode, setActiveInviteCode] = useState("");
   const [authReady, setAuthReady] = useState(false);
@@ -233,6 +235,7 @@ function FriendsSpace() {
           setAuthMode("login");
           return;
         }
+        if (!data.user) throw new Error("Your account wasn’t returned. Please try signing in.");
         setUser({ id: data.user.id, email: data.user.email ?? undefined });
         const { error: joinError } = await supabase.rpc("join_friends_group", {
           p_invite_code: inviteCode.trim(), p_username: username.trim(), p_bio: bio.trim(), p_vibe_tags: pickedVibes,
@@ -374,13 +377,14 @@ function FriendsSpace() {
   if (!user) {
     return (
       <main className="entry-page">
-        <div className="entry-nav"><Brand /><span className="private-mark"><span className="status-dot" /> FRIENDS ONLY</span></div>
+        <img className="entry-scene" src={nightshiftStudio} alt="Chrome star sculpture with lime and pink charms" width={1536} height={1024} />
+        <div className="entry-nav"><Brand /><div className="entry-nav-actions"><span className="private-mark"><span className="status-dot" /> FRIENDS ONLY</span><ThemePicker /></div></div>
         <div className="entry-layout">
           <section className="entry-copy">
             <div className="eyebrow"><Sparkles size={14} /> YOUR PEOPLE. YOUR SPACE.</div>
-            <h1>The group chat<br />grew <span>up.</span></h1>
+            <h1>nightshift<span>.<br />your people.</span></h1>
             <p className="entry-subtitle">A little corner for the people who get you.</p>
-            <img className="entry-mascot" src={nightshiftCharm} alt="Chrome star charm in lime and pink" width={340} height={340} />
+            <div className="entry-stamp"><span>✳</span> ONLY THE REAL ONES</div>
             <div className="entry-footnote"><Zap size={14} /> GOOD VIBES, NO STRANGERS</div>
           </section>
           <section className="auth-panel" aria-label="Sign in or join the group">
@@ -418,7 +422,7 @@ function FriendsSpace() {
   if (!profile) {
     return (
       <main className="entry-page profile-setup">
-        <div className="entry-nav"><Brand /><Button variant="ghost" size="icon" title="Sign out" aria-label="Sign out" onClick={() => void signOut()}><LogOut size={18} /></Button></div>
+        <div className="entry-nav"><Brand /><div className="entry-nav-actions"><ThemePicker /><Button variant="ghost" size="icon" title="Sign out" aria-label="Sign out" onClick={() => void signOut()}><LogOut size={18} /></Button></div></div>
         <section className="setup-panel">
           <div className="eyebrow"><Sparkles size={14} /> ONE LAST THING</div>
           <h1>You’re almost<br /><span>in.</span></h1>
@@ -453,6 +457,7 @@ function FriendsSpace() {
       </aside>
 
       <main className={`main-content ${view === "chat" ? "chat-main" : ""}`}>
+        <div className="community-style-bar"><span>✳ &nbsp; NIGHTSHIFT SOCIAL CLUB</span><ThemePicker /></div>
         <header className="mobile-topbar"><Brand /><button type="button" className="mobile-profile" onClick={() => setView("profile")}><Avatar profile={profile} size="sm" /></button></header>
         <div className="content-heading"><div><div className="eyebrow"><span className="status-dot" /> YOUR LITTLE CORNER OF THE INTERNET</div><h1>{view === "home" ? <>the <span>feed.</span></> : view === "chat" ? <>say <span>anything.</span></> : view === "files" ? <>good <span>things.</span></> : <>that’s <span>you.</span></>}</h1><p>{view === "home" ? "The latest from your favorite people." : view === "chat" ? "The group chat, minus the chaos of 200 unread texts." : view === "files" ? "Notes, files, links — all in one spot." : "Your corner of the group."}</p></div><div className="heading-date"><span className="live-badge"><span className="status-dot" /> CLOSE FRIENDS</span><span>EST. AFTER THE GROUP CHAT</span></div></div>
 
@@ -465,7 +470,7 @@ function FriendsSpace() {
             <div className="composer-bottom"><div className="composer-tools"><input ref={feedFileInput} className="visually-hidden" type="file" accept="image/*" onChange={(event) => setPostImage(event.target.files?.[0] ?? null)} /><Button variant="ghost" size="sm" type="button" onClick={() => feedFileInput.current?.click()}><ImagePlus size={16} /> Photo</Button><span className="composer-hint">only your circle sees it</span></div><Button type="submit" size="sm" disabled={feedBusy || (!caption.trim() && !postImage)}>{feedBusy ? "Posting…" : <>Post <ArrowLeft className="arrow-flip" size={15} /></>}</Button></div>
           </form>
           {feedBusy && posts.length === 0 && <div className="empty-line">getting the latest…</div>}
-          {!feedBusy && visiblePosts.length === 0 && <div className="empty-state"><span className="empty-icon"><Sparkles size={22} /></span><h2>{view === "profile" ? "Your grid starts here." : "It’s giving fresh start."}</h2><p>{view === "profile" ? "Your posts will land right here." : "Drop the first photo or thought in the group."}</p></div>}
+          {!feedBusy && visiblePosts.length === 0 && <div className="empty-state"><span className="empty-icon"><Sparkles size={22} /></span><h2>It’s giving fresh start.</h2><p>Drop the first photo or thought in the group.</p></div>}
           <div className="post-list">{visiblePosts.map((post) => <PostCard key={post.id} post={post} profile={profile} onLike={() => void toggleLike(post)} onComment={(form) => void addComment(post.id, form)} />)}</div>
         </section><aside className="right-rail"><div className="rail-section"><div className="section-label">YOUR PEOPLE <span>{members.length.toString().padStart(2, "0")}</span></div><div className="people-list">{members.slice(0, 8).map((member, index) => <div className="person-row" key={member.id}><div className="person-avatar-wrap"><Avatar profile={member} size="sm" accent={index} /><span className="person-online" /></div><span><strong>{member.id === user.id ? "you" : `@${member.username}`}</strong><small>{member.vibe_tags?.[0] ?? "one of the crew"}</small></span><span className="person-spark">✳</span></div>)}{members.length === 0 && <p className="muted-text">Your people will show up here.</p>}</div></div><div className="sticker-note"><img src={nightshiftCharm} alt="" width={74} height={74} loading="lazy" /><div><strong>the group, but better.</strong><span>just your people ✳</span></div></div><div className="rail-quote">“we should make a group for this”<span>— every friend group, ever</span></div></aside></div>}
 
@@ -495,7 +500,7 @@ function Avatar({ profile, size = "md", accent = 0 }: { profile: Profile | null;
   return <span className={`avatar avatar-${size} avatar-accent-${accent % 4}`}>{url ? <img src={url} alt={`@${profile?.username ?? "friend"}`} /> : <span>{profile?.username?.slice(0, 1).toUpperCase() ?? "✳"}</span>}</span>;
 }
 
-function NavItem({ icon, label, active, onClick, badge }: { icon: ReactNode; label: string; active: boolean; onClick: () => void; badge?: string }) {
+function NavItem({ icon, label, active, onClick, badge }: { icon: ReactNode; label: string; active: boolean; onClick: () => void; badge?: string | undefined }) {
   return <button type="button" className={`nav-item ${active ? "active" : ""}`} onClick={onClick}>{icon}<span>{label}</span>{badge && <i>{badge}</i>}</button>;
 }
 
