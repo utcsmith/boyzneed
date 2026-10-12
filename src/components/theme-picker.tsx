@@ -18,12 +18,12 @@ export function ThemePicker() {
     try {
       const stored = localStorage.getItem("nightshift-theme");
       const saved = themes.find((item) => item.id === stored);
-      if (saved) { setTheme(saved.id); document.documentElement.dataset.theme = saved.id; }
+      if (saved) { setTheme(saved.id); document.documentElement.dataset["theme"] = saved.id; }
     } catch { /* Themes still work when storage is unavailable. */ }
   }, []);
   function selectTheme(next: Theme) {
     setTheme(next);
-    document.documentElement.dataset.theme = next;
+    document.documentElement.dataset["theme"] = next;
     try { localStorage.setItem("nightshift-theme", next); } catch { /* Keep the current-session choice. */ }
     setOpen(false);
   }

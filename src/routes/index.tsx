@@ -61,7 +61,7 @@ const uploadBucket = "friends-share";
 const vibeOptions = ["main character", "chaotic good", "photo dump", "night owl", "soft launch", "always outside"];
 
 function FriendsSpace() {
-  const [user, setUser] = useState<{ id: string; email?: string } | null>(null);
+  const [user, setUser] = useState<{ id: string; email?: string | undefined } | null>(null);
   const [profile, setProfile] = useState<Profile | null>(null);
   const [activeInviteCode, setActiveInviteCode] = useState("");
   const [authReady, setAuthReady] = useState(false);
@@ -235,6 +235,7 @@ function FriendsSpace() {
           setAuthMode("login");
           return;
         }
+        if (!data.user) throw new Error("Your account wasn’t returned. Please try signing in.");
         setUser({ id: data.user.id, email: data.user.email ?? undefined });
         const { error: joinError } = await supabase.rpc("join_friends_group", {
           p_invite_code: inviteCode.trim(), p_username: username.trim(), p_bio: bio.trim(), p_vibe_tags: pickedVibes,
@@ -469,7 +470,7 @@ function FriendsSpace() {
             <div className="composer-bottom"><div className="composer-tools"><input ref={feedFileInput} className="visually-hidden" type="file" accept="image/*" onChange={(event) => setPostImage(event.target.files?.[0] ?? null)} /><Button variant="ghost" size="sm" type="button" onClick={() => feedFileInput.current?.click()}><ImagePlus size={16} /> Photo</Button><span className="composer-hint">only your circle sees it</span></div><Button type="submit" size="sm" disabled={feedBusy || (!caption.trim() && !postImage)}>{feedBusy ? "Posting…" : <>Post <ArrowLeft className="arrow-flip" size={15} /></>}</Button></div>
           </form>
           {feedBusy && posts.length === 0 && <div className="empty-line">getting the latest…</div>}
-          {!feedBusy && visiblePosts.length === 0 && <div className="empty-state"><span className="empty-icon"><Sparkles size={22} /></span><h2>{view === "profile" ? "Your grid starts here." : "It’s giving fresh start."}</h2><p>{view === "profile" ? "Your posts will land right here." : "Drop the first photo or thought in the group."}</p></div>}
+          {!feedBusy && visiblePosts.length === 0 && <div className="empty-state"><span className="empty-icon"><Sparkles size={22} /></span><h2>It’s giving fresh start.</h2><p>Drop the first photo or thought in the group.</p></div>}
           <div className="post-list">{visiblePosts.map((post) => <PostCard key={post.id} post={post} profile={profile} onLike={() => void toggleLike(post)} onComment={(form) => void addComment(post.id, form)} />)}</div>
         </section><aside className="right-rail"><div className="rail-section"><div className="section-label">YOUR PEOPLE <span>{members.length.toString().padStart(2, "0")}</span></div><div className="people-list">{members.slice(0, 8).map((member, index) => <div className="person-row" key={member.id}><div className="person-avatar-wrap"><Avatar profile={member} size="sm" accent={index} /><span className="person-online" /></div><span><strong>{member.id === user.id ? "you" : `@${member.username}`}</strong><small>{member.vibe_tags?.[0] ?? "one of the crew"}</small></span><span className="person-spark">✳</span></div>)}{members.length === 0 && <p className="muted-text">Your people will show up here.</p>}</div></div><div className="sticker-note"><img src={nightshiftCharm} alt="" width={74} height={74} loading="lazy" /><div><strong>the group, but better.</strong><span>just your people ✳</span></div></div><div className="rail-quote">“we should make a group for this”<span>— every friend group, ever</span></div></aside></div>}
 
@@ -499,7 +500,7 @@ function Avatar({ profile, size = "md", accent = 0 }: { profile: Profile | null;
   return <span className={`avatar avatar-${size} avatar-accent-${accent % 4}`}>{url ? <img src={url} alt={`@${profile?.username ?? "friend"}`} /> : <span>{profile?.username?.slice(0, 1).toUpperCase() ?? "✳"}</span>}</span>;
 }
 
-function NavItem({ icon, label, active, onClick, badge }: { icon: ReactNode; label: string; active: boolean; onClick: () => void; badge?: string }) {
+function NavItem({ icon, label, active, onClick, badge }: { icon: ReactNode; label: string; active: boolean; onClick: () => void; badge?: string | undefined }) {
   return <button type="button" className={`nav-item ${active ? "active" : ""}`} onClick={onClick}>{icon}<span>{label}</span>{badge && <i>{badge}</i>}</button>;
 }
 
