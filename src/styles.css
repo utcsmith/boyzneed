@@ -566,12 +566,10 @@ button { cursor: pointer; }
 .theme-check { width: 17px; margin-left: auto; color: var(--lime); }
 .theme-swatch { display: flex; width: 39px; height: 34px; overflow: hidden; border-radius: 4px; transform: rotate(-7deg); border: 1px solid var(--line); }
 .theme-swatch i { flex: 1; background: var(--hero-base); }
-.swatch-neon i:nth-child(2) { background: var(--theme-neon); } .swatch-neon i:nth-child(3) { background: var(--theme-neon-alt); }
-.swatch-bubblegum i:nth-child(2) { background: var(--theme-bubblegum); } .swatch-bubblegum i:nth-child(3) { background: var(--theme-bubblegum-alt); }
-.swatch-ice i:nth-child(2) { background: var(--theme-ice); } .swatch-ice i:nth-child(3) { background: var(--theme-ice-alt); }
-.swatch-acid i:first-child { background: var(--hero-ink); } .swatch-acid i:nth-child(2) { background: var(--theme-acid); } .swatch-acid i:nth-child(3) { background: var(--theme-acid-alt); }
+.swatch-bgmi i:nth-child(2) { background: var(--primary); } .swatch-bgmi i:nth-child(3) { background: var(--lime); }
+.swatch-garba i:first-child { background: var(--surface-deep); } .swatch-garba i:nth-child(2) { background: var(--primary); } .swatch-garba i:nth-child(3) { background: var(--lime); }
 .community-style-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-bottom: 25px; }
-.community-style-bar > span { font: 9px "Space Mono", monospace; color: var(--pink); }
+.community-style-bar > span { display: inline-flex; align-items: center; gap: 9px; min-height: 32px; padding: 0 10px; border: 1px solid var(--line); border-left: 3px solid var(--primary); background: var(--surface); font: 9px "Space Mono", monospace; color: var(--primary); }
 .main-content { padding-top: 25px; }
 .content-heading { border-bottom: 2px solid var(--line); }
 .composer, .share-composer { border-top: 2px solid var(--lime); }
@@ -586,7 +584,6 @@ button { cursor: pointer; }
 .note-icon { background: color-mix(in oklab, var(--lime) 10%, transparent); }
 .field-label input::placeholder, .field-label textarea::placeholder { color: var(--muted-foreground); }
 .avatar-accent-2 { background: var(--theme-ice); }
-:root[data-theme="acid"] .composer-bottom > button, :root[data-theme="acid"] .share-actions button:last-child, :root[data-theme="acid"] .chat-compose button, :root[data-theme="acid"] .message-row.mine .message-bubble { background: var(--primary); }
 @media (min-width: 761px) and (max-width: 1050px) {
   .entry-copy h1 { font-size: 48px; }
   .entry-layout { gap: 32px; grid-template-columns: 1fr 1fr; }
@@ -611,4 +608,85 @@ button { cursor: pointer; }
   .entry-copy h1 { font-size: 40px; }
   .entry-nav .brand { font-size: 17px; gap: 3px; }
   .private-mark { font-size: 7px; gap: 5px; }
+}
+
+/* BGMI squad HUD is the default interface; Garba swaps in a crafted raas-night frame. */
+:root[data-theme="bgmi"] {
+  --theme-ice: oklch(0.7 0.09 225);
+  --theme-bolt: oklch(0.84 0.16 84);
+}
+:root[data-theme="garba"] {
+  --theme-bolt: oklch(0.82 0.15 82);
+  --theme-ice: oklch(0.7 0.11 205);
+}
+.entry-scene {
+  background-image: var(--interface-texture);
+  background-position: center;
+  background-size: cover;
+  opacity: .36;
+  mix-blend-mode: screen;
+}
+.entry-page {
+  background-image: linear-gradient(90deg, color-mix(in oklab, var(--hero-base) 86%, transparent), color-mix(in oklab, var(--hero-base) 65%, transparent)), var(--interface-texture);
+  background-size: cover;
+  background-position: center;
+}
+.app-shell {
+  background-image: linear-gradient(color-mix(in oklab, var(--background) 95%, transparent), color-mix(in oklab, var(--background) 95%, transparent)), var(--interface-texture);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+.left-rail, .main-content { position: relative; }
+.left-rail { border-right-color: color-mix(in oklab, var(--primary) 34%, var(--line)); }
+.group-switcher, .composer, .share-composer, .post-card, .chat-panel, .profile-cover, .auth-panel, .theme-menu {
+  border-radius: 0;
+  box-shadow: inset 0 1px color-mix(in oklab, var(--foreground) 7%, transparent), 0 5px 18px var(--shadow-ink);
+}
+.content-heading { position: relative; border-bottom: 1px solid var(--primary); }
+.content-heading::after {
+  position: absolute;
+  right: 0;
+  bottom: -3px;
+  width: 68px;
+  height: 5px;
+  content: "";
+  background: repeating-linear-gradient(120deg, var(--primary) 0 5px, transparent 5px 10px);
+}
+.composer, .share-composer { border-top: 2px solid var(--primary); }
+.post-card { border-left: 2px solid color-mix(in oklab, var(--primary) 55%, var(--line)); }
+.chat-topline { background: color-mix(in oklab, var(--surface-raised) 74%, transparent); }
+.chat-compose { background: color-mix(in oklab, var(--surface-deep) 84%, transparent); }
+.profile-cover {
+  background-image: linear-gradient(90deg, color-mix(in oklab, var(--surface-raised) 72%, transparent), color-mix(in oklab, var(--surface-raised) 82%, transparent)), var(--interface-texture);
+  background-size: cover;
+  background-position: center;
+}
+.profile-cover::after { opacity: .22; }
+.theme-swatch { border-radius: 0; transform: none; }
+.theme-option { border-radius: 0; }
+.theme-trigger { border-radius: 0; }
+:root[data-theme="garba"] .entry-scene { mix-blend-mode: normal; opacity: .52; }
+:root[data-theme="garba"] .entry-page {
+  background-image: linear-gradient(color-mix(in oklab, var(--hero-base) 75%, transparent), color-mix(in oklab, var(--hero-base) 84%, transparent)), var(--interface-texture);
+}
+:root[data-theme="garba"] .community-style-bar > span { border-left-color: var(--lime); }
+:root[data-theme="garba"] .content-heading::after {
+  width: 100%;
+  height: 4px;
+  background: repeating-linear-gradient(90deg, var(--lime) 0 3px, transparent 3px 8px, var(--primary) 8px 11px, transparent 11px 16px);
+}
+:root[data-theme="garba"] .profile-cover {
+  border: 2px solid color-mix(in oklab, var(--lime) 62%, var(--line));
+  background-size: cover;
+}
+:root[data-theme="garba"] .group-switcher,
+:root[data-theme="garba"] .composer,
+:root[data-theme="garba"] .share-composer,
+:root[data-theme="garba"] .post-card,
+:root[data-theme="garba"] .chat-panel,
+:root[data-theme="garba"] .auth-panel { border-radius: 5px; }
+@media (max-width: 760px) {
+  .app-shell { background-attachment: scroll; }
+  .community-style-bar > span { min-height: 29px; font-size: 8px; }
 }

@@ -28,7 +28,6 @@ import { lovable } from "@/integrations/lovable";
 import { supabase } from "@/integrations/supabase/client";
 import type { Tables } from "@/integrations/supabase/types";
 import nightshiftCharm from "@/assets/nightshift-charm.png";
-import nightshiftStudio from "@/assets/nightshift-studio.jpg";
 import { ThemePicker } from "@/components/theme-picker";
 
 type Profile = Tables<"profiles">;
