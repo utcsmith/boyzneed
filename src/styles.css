@@ -144,79 +144,71 @@
 }
 
 :root {
-  --background: oklch(0.13 0.015 285);
-  --foreground: oklch(0.94 0.012 90);
-  --card: oklch(0.17 0.018 285);
-  --card-foreground: oklch(0.94 0.012 90);
-  --popover: oklch(0.17 0.018 285);
-  --popover-foreground: oklch(0.94 0.012 90);
-  --primary: oklch(0.91 0.27 125);
-  --primary-foreground: oklch(0.17 0.03 130);
-  --secondary: oklch(0.22 0.025 285);
-  --secondary-foreground: oklch(0.92 0.015 90);
-  --muted: oklch(0.22 0.018 285);
-  --muted-foreground: oklch(0.63 0.018 285);
-  --accent: oklch(0.24 0.035 330);
-  --accent-foreground: oklch(0.9 0.12 350);
+  --background: oklch(0.12 0.009 250);
+  --foreground: oklch(0.94 0.012 85);
+  --card: oklch(0.16 0.012 250);
+  --card-foreground: oklch(0.94 0.012 85);
+  --popover: oklch(0.16 0.012 250);
+  --popover-foreground: oklch(0.94 0.012 85);
+  --primary: oklch(0.72 0.17 52);
+  --primary-foreground: oklch(0.15 0.014 250);
+  --secondary: oklch(0.21 0.015 250);
+  --secondary-foreground: oklch(0.92 0.015 85);
+  --muted: oklch(0.21 0.012 250);
+  --muted-foreground: oklch(0.68 0.016 245);
+  --accent: oklch(0.25 0.035 65);
+  --accent-foreground: oklch(0.91 0.14 80);
   --destructive: oklch(0.66 0.2 25);
   --destructive-foreground: oklch(0.98 0.01 90);
-  --border: oklch(0.31 0.022 285);
-  --input: oklch(0.26 0.02 285);
-  --ring: oklch(0.91 0.27 125);
+  --border: oklch(0.34 0.018 245);
+  --input: oklch(0.27 0.014 245);
+  --ring: oklch(0.72 0.17 52);
   --radius: 0.4rem;
-  --lime: oklch(0.91 0.27 125);
-  --pink: oklch(0.72 0.25 350);
-  --violet: oklch(0.66 0.2 300);
-  --surface-deep: oklch(0.105 0.013 285);
-  --surface: oklch(0.17 0.018 285);
-  --surface-raised: oklch(0.205 0.02 285);
-  --line: oklch(0.32 0.02 285 / 55%);
-  --hero-ink: oklch(0.97 0.008 90);
-  --hero-muted: oklch(0.78 0.012 285);
-  --hero-base: oklch(0.12 0.006 285);
+  --lime: oklch(0.83 0.15 84);
+  --pink: oklch(0.72 0.17 52);
+  --violet: oklch(0.7 0.09 225);
+  --surface-deep: oklch(0.09 0.008 250);
+  --surface: oklch(0.16 0.012 250);
+  --surface-raised: oklch(0.205 0.016 250);
+  --line: oklch(0.4 0.025 245 / 58%);
+  --hero-ink: oklch(0.97 0.008 85);
+  --hero-muted: oklch(0.76 0.016 245);
+  --hero-base: oklch(0.105 0.01 250);
   --shadow-ink: oklch(0 0 0 / 32%);
-  --theme-neon: oklch(0.91 0.27 125);
-  --theme-neon-alt: oklch(0.72 0.25 350);
-  --theme-bubblegum: oklch(0.77 0.19 350);
-  --theme-bubblegum-alt: oklch(0.9 0.16 95);
-  --theme-ice: oklch(0.84 0.13 195);
-  --theme-ice-alt: oklch(0.78 0.17 35);
-  --theme-acid: oklch(0.85 0.23 130);
-  --theme-acid-alt: oklch(0.59 0.24 25);
+  --theme-ice: oklch(0.7 0.09 225);
+  --interface-texture: url("./assets/bgmi-hud-texture.jpg");
 }
 
-:root[data-theme="bubblegum"] {
-  --background: oklch(0.145 0.018 345); --surface-deep: oklch(0.115 0.018 345);
-  --surface: oklch(0.195 0.025 345); --surface-raised: oklch(0.24 0.03 345);
-  --foreground: oklch(0.95 0.018 340); --muted-foreground: oklch(0.73 0.025 340);
-  --primary: var(--theme-bubblegum); --lime: var(--primary); --pink: var(--theme-bubblegum-alt);
-  --violet: oklch(0.74 0.13 210); --primary-foreground: oklch(0.17 0.035 345);
-  --secondary: var(--surface-raised); --muted: var(--surface-raised);
-  --border: oklch(0.35 0.04 345); --line: oklch(0.35 0.04 345 / 75%);
-  --input: var(--border); --ring: var(--primary); --accent: var(--surface-raised); --accent-foreground: var(--foreground);
-  --card: var(--surface); --card-foreground: var(--foreground); --popover: var(--surface); --popover-foreground: var(--foreground);
-}
-:root[data-theme="ice"] {
-  --background: oklch(0.145 0.007 200); --surface-deep: oklch(0.115 0.005 200);
-  --surface: oklch(0.2 0.012 200); --surface-raised: oklch(0.255 0.017 200);
-  --foreground: oklch(0.96 0.006 200); --muted-foreground: oklch(0.72 0.018 200);
-  --primary: var(--theme-ice); --lime: var(--primary); --pink: var(--theme-ice-alt);
-  --violet: oklch(0.8 0.14 100); --primary-foreground: oklch(0.16 0.03 200);
-  --secondary: var(--surface-raised); --muted: var(--surface-raised);
-  --border: oklch(0.36 0.025 200); --line: oklch(0.36 0.025 200 / 75%);
-  --input: var(--border); --ring: var(--primary); --accent: var(--surface-raised); --accent-foreground: var(--foreground);
-  --card: var(--surface); --card-foreground: var(--foreground); --popover: var(--surface); --popover-foreground: var(--foreground);
-}
-:root[data-theme="acid"] {
-  --background: oklch(0.96 0.009 150); --surface-deep: oklch(0.93 0.012 150);
-  --surface: oklch(0.99 0.004 150); --surface-raised: oklch(0.89 0.016 150);
-  --foreground: oklch(0.19 0.015 150); --muted-foreground: oklch(0.43 0.018 150);
-  --primary: var(--theme-acid); --lime: oklch(0.4 0.12 145); --pink: var(--theme-acid-alt);
-  --violet: oklch(0.48 0.19 290); --primary-foreground: oklch(0.16 0.025 145);
-  --secondary: var(--surface-raised); --secondary-foreground: var(--foreground); --muted: var(--surface-raised);
-  --border: oklch(0.76 0.02 150); --line: oklch(0.71 0.018 150 / 65%);
-  --input: var(--border); --ring: var(--lime); --accent: var(--surface-raised); --accent-foreground: var(--foreground);
-  --card: var(--surface); --card-foreground: var(--foreground); --popover: var(--surface); --popover-foreground: var(--foreground);
+:root[data-theme="garba"] {
+  --background: oklch(0.12 0.035 350);
+  --foreground: oklch(0.96 0.025 82);
+  --card: oklch(0.17 0.04 350);
+  --card-foreground: oklch(0.96 0.025 82);
+  --popover: oklch(0.17 0.04 350);
+  --popover-foreground: oklch(0.96 0.025 82);
+  --primary: oklch(0.73 0.2 350);
+  --primary-foreground: oklch(0.18 0.035 350);
+  --secondary: oklch(0.25 0.05 350);
+  --secondary-foreground: oklch(0.95 0.03 82);
+  --muted: oklch(0.24 0.04 350);
+  --muted-foreground: oklch(0.76 0.05 40);
+  --accent: oklch(0.29 0.07 55);
+  --accent-foreground: oklch(0.95 0.11 85);
+  --border: oklch(0.56 0.11 48 / 72%);
+  --input: oklch(0.33 0.055 350);
+  --ring: oklch(0.82 0.15 82);
+  --lime: oklch(0.83 0.15 82);
+  --pink: oklch(0.73 0.2 350);
+  --violet: oklch(0.7 0.11 205);
+  --surface-deep: oklch(0.095 0.03 350);
+  --surface: oklch(0.17 0.04 350);
+  --surface-raised: oklch(0.24 0.05 350);
+  --line: oklch(0.62 0.12 53 / 64%);
+  --hero-ink: oklch(0.97 0.025 82);
+  --hero-muted: oklch(0.8 0.05 48);
+  --hero-base: oklch(0.1 0.03 350);
+  --theme-ice: oklch(0.7 0.11 205);
+  --interface-texture: url("./assets/garba-interface-texture.jpg");
 }
 
 html { background: var(--background); }
@@ -574,12 +566,10 @@ button { cursor: pointer; }
 .theme-check { width: 17px; margin-left: auto; color: var(--lime); }
 .theme-swatch { display: flex; width: 39px; height: 34px; overflow: hidden; border-radius: 4px; transform: rotate(-7deg); border: 1px solid var(--line); }
 .theme-swatch i { flex: 1; background: var(--hero-base); }
-.swatch-neon i:nth-child(2) { background: var(--theme-neon); } .swatch-neon i:nth-child(3) { background: var(--theme-neon-alt); }
-.swatch-bubblegum i:nth-child(2) { background: var(--theme-bubblegum); } .swatch-bubblegum i:nth-child(3) { background: var(--theme-bubblegum-alt); }
-.swatch-ice i:nth-child(2) { background: var(--theme-ice); } .swatch-ice i:nth-child(3) { background: var(--theme-ice-alt); }
-.swatch-acid i:first-child { background: var(--hero-ink); } .swatch-acid i:nth-child(2) { background: var(--theme-acid); } .swatch-acid i:nth-child(3) { background: var(--theme-acid-alt); }
+.swatch-bgmi i:nth-child(2) { background: var(--primary); } .swatch-bgmi i:nth-child(3) { background: var(--lime); }
+.swatch-garba i:first-child { background: var(--surface-deep); } .swatch-garba i:nth-child(2) { background: var(--primary); } .swatch-garba i:nth-child(3) { background: var(--lime); }
 .community-style-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-bottom: 25px; }
-.community-style-bar > span { font: 9px "Space Mono", monospace; color: var(--pink); }
+.community-style-bar > span { display: inline-flex; align-items: center; gap: 9px; min-height: 32px; padding: 0 10px; border: 1px solid var(--line); border-left: 3px solid var(--primary); background: var(--surface); font: 9px "Space Mono", monospace; color: var(--primary); }
 .main-content { padding-top: 25px; }
 .content-heading { border-bottom: 2px solid var(--line); }
 .composer, .share-composer { border-top: 2px solid var(--lime); }
@@ -594,7 +584,6 @@ button { cursor: pointer; }
 .note-icon { background: color-mix(in oklab, var(--lime) 10%, transparent); }
 .field-label input::placeholder, .field-label textarea::placeholder { color: var(--muted-foreground); }
 .avatar-accent-2 { background: var(--theme-ice); }
-:root[data-theme="acid"] .composer-bottom > button, :root[data-theme="acid"] .share-actions button:last-child, :root[data-theme="acid"] .chat-compose button, :root[data-theme="acid"] .message-row.mine .message-bubble { background: var(--primary); }
 @media (min-width: 761px) and (max-width: 1050px) {
   .entry-copy h1 { font-size: 48px; }
   .entry-layout { gap: 32px; grid-template-columns: 1fr 1fr; }
@@ -619,4 +608,85 @@ button { cursor: pointer; }
   .entry-copy h1 { font-size: 40px; }
   .entry-nav .brand { font-size: 17px; gap: 3px; }
   .private-mark { font-size: 7px; gap: 5px; }
+}
+
+/* BGMI squad HUD is the default interface; Garba swaps in a crafted raas-night frame. */
+:root[data-theme="bgmi"] {
+  --theme-ice: oklch(0.7 0.09 225);
+  --theme-bolt: oklch(0.84 0.16 84);
+}
+:root[data-theme="garba"] {
+  --theme-bolt: oklch(0.82 0.15 82);
+  --theme-ice: oklch(0.7 0.11 205);
+}
+.entry-scene {
+  background-image: var(--interface-texture);
+  background-position: center;
+  background-size: cover;
+  opacity: .36;
+  mix-blend-mode: screen;
+}
+.entry-page {
+  background-image: linear-gradient(90deg, color-mix(in oklab, var(--hero-base) 86%, transparent), color-mix(in oklab, var(--hero-base) 65%, transparent)), var(--interface-texture);
+  background-size: cover;
+  background-position: center;
+}
+.app-shell {
+  background-image: linear-gradient(color-mix(in oklab, var(--background) 95%, transparent), color-mix(in oklab, var(--background) 95%, transparent)), var(--interface-texture);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+.left-rail, .main-content { position: relative; }
+.left-rail { border-right-color: color-mix(in oklab, var(--primary) 34%, var(--line)); }
+.group-switcher, .composer, .share-composer, .post-card, .chat-panel, .profile-cover, .auth-panel, .theme-menu {
+  border-radius: 0;
+  box-shadow: inset 0 1px color-mix(in oklab, var(--foreground) 7%, transparent), 0 5px 18px var(--shadow-ink);
+}
+.content-heading { position: relative; border-bottom: 1px solid var(--primary); }
+.content-heading::after {
+  position: absolute;
+  right: 0;
+  bottom: -3px;
+  width: 68px;
+  height: 5px;
+  content: "";
+  background: repeating-linear-gradient(120deg, var(--primary) 0 5px, transparent 5px 10px);
+}
+.composer, .share-composer { border-top: 2px solid var(--primary); }
+.post-card { border-left: 2px solid color-mix(in oklab, var(--primary) 55%, var(--line)); }
+.chat-topline { background: color-mix(in oklab, var(--surface-raised) 74%, transparent); }
+.chat-compose { background: color-mix(in oklab, var(--surface-deep) 84%, transparent); }
+.profile-cover {
+  background-image: linear-gradient(90deg, color-mix(in oklab, var(--surface-raised) 72%, transparent), color-mix(in oklab, var(--surface-raised) 82%, transparent)), var(--interface-texture);
+  background-size: cover;
+  background-position: center;
+}
+.profile-cover::after { opacity: .22; }
+.theme-swatch { border-radius: 0; transform: none; }
+.theme-option { border-radius: 0; }
+.theme-trigger { border-radius: 0; }
+:root[data-theme="garba"] .entry-scene { mix-blend-mode: normal; opacity: .52; }
+:root[data-theme="garba"] .entry-page {
+  background-image: linear-gradient(color-mix(in oklab, var(--hero-base) 75%, transparent), color-mix(in oklab, var(--hero-base) 84%, transparent)), var(--interface-texture);
+}
+:root[data-theme="garba"] .community-style-bar > span { border-left-color: var(--lime); }
+:root[data-theme="garba"] .content-heading::after {
+  width: 100%;
+  height: 4px;
+  background: repeating-linear-gradient(90deg, var(--lime) 0 3px, transparent 3px 8px, var(--primary) 8px 11px, transparent 11px 16px);
+}
+:root[data-theme="garba"] .profile-cover {
+  border: 2px solid color-mix(in oklab, var(--lime) 62%, var(--line));
+  background-size: cover;
+}
+:root[data-theme="garba"] .group-switcher,
+:root[data-theme="garba"] .composer,
+:root[data-theme="garba"] .share-composer,
+:root[data-theme="garba"] .post-card,
+:root[data-theme="garba"] .chat-panel,
+:root[data-theme="garba"] .auth-panel { border-radius: 5px; }
+@media (max-width: 760px) {
+  .app-shell { background-attachment: scroll; }
+  .community-style-bar > span { min-height: 29px; font-size: 8px; }
 }
