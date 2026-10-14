@@ -769,8 +769,10 @@ button { cursor: pointer; }
 :root[data-theme="paper"] .setup-panel h1,
 :root[data-theme="paper"] .content-heading h1,
 :root[data-theme="paper"] .profile-header h2 {
-  font-family: "Comic Sans MS", "Bradley Hand", cursive;
+  font-family: "DM Sans", sans-serif;
   font-weight: 700;
+  font-style: italic;
+  text-shadow: 1px 1px 0 color-mix(in oklab, var(--primary) 36%, transparent);
 }
 :root[data-theme="paper"] .entry-stamp {
   border-style: dashed;

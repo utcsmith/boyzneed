@@ -11,4 +11,4 @@
 # Torn-paper interface theme
 - [x] Add the torn-paper collage as a selectable third personal theme.
 - [x] Keep shared photos and post images free of theme overlays.
-- [ ] Verify the style picker and paper styling in the preview.
+- [x] Verify the style picker and paper styling in the preview.
