@@ -765,6 +765,30 @@ button { cursor: pointer; }
   border-color: var(--primary);
   background: color-mix(in oklab, var(--primary) 12%, var(--surface));
 }
+:root[data-theme="paper"] .entry-copy h1,
+:root[data-theme="paper"] .setup-panel h1,
+:root[data-theme="paper"] .content-heading h1,
+:root[data-theme="paper"] .profile-header h2 {
+  font-family: "Comic Sans MS", "Bradley Hand", cursive;
+  font-weight: 700;
+}
+:root[data-theme="paper"] .entry-stamp {
+  border-style: dashed;
+  transform: rotate(-5deg);
+  box-shadow: 3px 3px 0 color-mix(in oklab, var(--primary) 24%, transparent);
+}
+:root[data-theme="paper"] .post-card { border-style: dashed; }
+:root[data-theme="paper"] .message-row.mine .message-bubble {
+  border-color: color-mix(in oklab, var(--primary) 72%, var(--line));
+  color: var(--primary-foreground);
+  background: linear-gradient(color-mix(in oklab, var(--primary) 88%, var(--surface)), color-mix(in oklab, var(--primary) 78%, var(--surface)));
+}
+:root[data-theme="paper"] .message-row:not(.mine) .message-bubble {
+  border-style: dashed;
+  background: color-mix(in oklab, var(--surface-raised) 92%, var(--primary));
+}
+:root[data-theme="paper"] .shared-item { border-bottom-style: dashed; }
+:root[data-theme="paper"] .vibe-chip.selected { transform: rotate(-1deg); }
 :root[data-theme="paper"] .swatch-paper i:first-child { background: var(--surface-deep); }
 :root[data-theme="paper"] .swatch-paper i:nth-child(2) { background: var(--primary); }
 :root[data-theme="paper"] .swatch-paper i:nth-child(3) { background: var(--lime); }
