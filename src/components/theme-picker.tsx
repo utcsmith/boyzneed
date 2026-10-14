@@ -6,6 +6,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 const themes = [
   { id: "bgmi", name: "BGMI · Squad HUD", mood: "Carbon · field map · supply drop" },
   { id: "garba", name: "Garba · Raas night", mood: "Mirror-work · textile · festive" },
+  { id: "paper", name: "Torn paper · Zine", mood: "Scraps · tape · photocopied texture" },
 ] as const;
 type Theme = typeof themes[number]["id"];
 
@@ -31,7 +32,7 @@ export function ThemePicker() {
   return <Popover open={open} onOpenChange={setOpen}>
     <PopoverTrigger asChild><Button variant="outline" size="icon" className="theme-trigger" aria-label="Choose theme" title="Choose theme"><Palette size={18} /></Button></PopoverTrigger>
     <PopoverContent align="end" className="theme-menu">
-      <div className="theme-menu-heading"><Palette size={16} /><strong>Choose your interface</strong><span>02</span></div>
+      <div className="theme-menu-heading"><Palette size={16} /><strong>Choose your interface</strong><span>{themes.length.toString().padStart(2, "0")}</span></div>
       <div className="theme-options" role="group" aria-label="Interface style">{themes.map((item) => <Button key={item.id} variant="ghost" className="theme-option" aria-pressed={theme === item.id} onClick={() => selectTheme(item.id)}>
         <span className={`theme-swatch swatch-${item.id}`} aria-hidden="true"><i /><i /><i /></span>
         <span className="theme-option-copy"><strong>{item.name}</strong><small>{item.mood}</small></span>
