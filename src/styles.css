@@ -176,7 +176,6 @@
   --hero-base: oklch(0.105 0.01 250);
   --shadow-ink: oklch(0 0 0 / 32%);
   --theme-ice: oklch(0.7 0.09 225);
-  --interface-texture: url("./assets/bgmi-hud-texture.jpg");
 }
 
 :root[data-theme="garba"] {
@@ -208,7 +207,37 @@
   --hero-muted: oklch(0.8 0.05 48);
   --hero-base: oklch(0.1 0.03 350);
   --theme-ice: oklch(0.7 0.11 205);
-  --interface-texture: url("./assets/garba-interface-texture.jpg");
+}
+
+:root[data-theme="paper"] {
+  --background: oklch(0.13 0.009 250);
+  --foreground: oklch(0.94 0.015 80);
+  --card: oklch(0.18 0.012 250);
+  --card-foreground: oklch(0.94 0.015 80);
+  --popover: oklch(0.17 0.012 250);
+  --popover-foreground: oklch(0.94 0.015 80);
+  --primary: oklch(0.78 0.16 72);
+  --primary-foreground: oklch(0.16 0.014 250);
+  --secondary: oklch(0.23 0.014 250);
+  --secondary-foreground: oklch(0.94 0.015 80);
+  --muted: oklch(0.23 0.012 250);
+  --muted-foreground: oklch(0.71 0.018 70);
+  --accent: oklch(0.28 0.035 70);
+  --accent-foreground: oklch(0.96 0.02 80);
+  --border: oklch(0.56 0.07 70 / 75%);
+  --input: oklch(0.26 0.015 250);
+  --ring: oklch(0.78 0.16 72);
+  --lime: oklch(0.86 0.12 88);
+  --pink: oklch(0.76 0.17 48);
+  --violet: oklch(0.7 0.08 225);
+  --surface-deep: oklch(0.1 0.008 250);
+  --surface: oklch(0.18 0.012 250);
+  --surface-raised: oklch(0.23 0.014 250);
+  --line: oklch(0.65 0.075 74 / 65%);
+  --hero-ink: oklch(0.97 0.012 80);
+  --hero-muted: oklch(0.81 0.025 75);
+  --hero-base: oklch(0.105 0.008 250);
+  --theme-ice: oklch(0.7 0.08 225);
 }
 
 html { background: var(--background); }
@@ -620,19 +649,19 @@ button { cursor: pointer; }
   --theme-ice: oklch(0.7 0.11 205);
 }
 .entry-scene {
-  background-image: var(--interface-texture);
+  background-image: url("./assets/bgmi-hud-texture.jpg");
   background-position: center;
   background-size: cover;
   opacity: .36;
   mix-blend-mode: screen;
 }
 .entry-page {
-  background-image: linear-gradient(90deg, color-mix(in oklab, var(--hero-base) 86%, transparent), color-mix(in oklab, var(--hero-base) 65%, transparent)), var(--interface-texture);
+  background-image: linear-gradient(90deg, color-mix(in oklab, var(--hero-base) 86%, transparent), color-mix(in oklab, var(--hero-base) 65%, transparent)), url("./assets/bgmi-hud-texture.jpg");
   background-size: cover;
   background-position: center;
 }
 .app-shell {
-  background-image: linear-gradient(color-mix(in oklab, var(--background) 95%, transparent), color-mix(in oklab, var(--background) 95%, transparent)), var(--interface-texture);
+  background-image: linear-gradient(color-mix(in oklab, var(--background) 95%, transparent), color-mix(in oklab, var(--background) 95%, transparent)), url("./assets/bgmi-hud-texture.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -658,7 +687,7 @@ button { cursor: pointer; }
 .chat-topline { background: color-mix(in oklab, var(--surface-raised) 74%, transparent); }
 .chat-compose { background: color-mix(in oklab, var(--surface-deep) 84%, transparent); }
 .profile-cover {
-  background-image: linear-gradient(90deg, color-mix(in oklab, var(--surface-raised) 72%, transparent), color-mix(in oklab, var(--surface-raised) 82%, transparent)), var(--interface-texture);
+  background-image: linear-gradient(90deg, color-mix(in oklab, var(--surface-raised) 72%, transparent), color-mix(in oklab, var(--surface-raised) 82%, transparent)), url("./assets/bgmi-hud-texture.jpg");
   background-size: cover;
   background-position: center;
 }
@@ -668,7 +697,14 @@ button { cursor: pointer; }
 .theme-trigger { border-radius: 0; }
 :root[data-theme="garba"] .entry-scene { mix-blend-mode: normal; opacity: .52; }
 :root[data-theme="garba"] .entry-page {
-  background-image: linear-gradient(color-mix(in oklab, var(--hero-base) 75%, transparent), color-mix(in oklab, var(--hero-base) 84%, transparent)), var(--interface-texture);
+  background-image: linear-gradient(color-mix(in oklab, var(--hero-base) 75%, transparent), color-mix(in oklab, var(--hero-base) 84%, transparent)), url("./assets/garba-interface-texture.jpg");
+}
+:root[data-theme="garba"] .entry-scene { background-image: url("./assets/garba-interface-texture.jpg"); }
+:root[data-theme="garba"] .app-shell {
+  background-image: linear-gradient(color-mix(in oklab, var(--background) 89%, transparent), color-mix(in oklab, var(--background) 92%, transparent)), url("./assets/garba-interface-texture.jpg");
+}
+:root[data-theme="garba"] .profile-cover {
+  background-image: linear-gradient(90deg, color-mix(in oklab, var(--surface-raised) 65%, transparent), color-mix(in oklab, var(--surface-raised) 75%, transparent)), url("./assets/garba-interface-texture.jpg");
 }
 :root[data-theme="garba"] .community-style-bar > span { border-left-color: var(--lime); }
 :root[data-theme="garba"] .content-heading::after {
@@ -686,6 +722,52 @@ button { cursor: pointer; }
 :root[data-theme="garba"] .post-card,
 :root[data-theme="garba"] .chat-panel,
 :root[data-theme="garba"] .auth-panel { border-radius: 5px; }
+
+:root[data-theme="paper"] .entry-page {
+  background-image: linear-gradient(color-mix(in oklab, var(--hero-base) 74%, transparent), color-mix(in oklab, var(--hero-base) 86%, transparent)), url("./assets/torn-paper-interface-texture.jpg");
+}
+:root[data-theme="paper"] .entry-scene {
+  background-image: url("./assets/torn-paper-interface-texture.jpg");
+  opacity: .24;
+  mix-blend-mode: normal;
+}
+:root[data-theme="paper"] .app-shell {
+  background-image: linear-gradient(color-mix(in oklab, var(--background) 86%, transparent), color-mix(in oklab, var(--background) 90%, transparent)), url("./assets/torn-paper-interface-texture.jpg");
+}
+:root[data-theme="paper"] .profile-cover {
+  border: 2px solid var(--line);
+  background-image: linear-gradient(90deg, color-mix(in oklab, var(--surface-raised) 48%, transparent), color-mix(in oklab, var(--surface-raised) 58%, transparent)), url("./assets/torn-paper-interface-texture.jpg");
+}
+:root[data-theme="paper"] .group-switcher,
+:root[data-theme="paper"] .composer,
+:root[data-theme="paper"] .share-composer,
+:root[data-theme="paper"] .post-card,
+:root[data-theme="paper"] .chat-panel,
+:root[data-theme="paper"] .auth-panel {
+  border-color: color-mix(in oklab, var(--line) 76%, var(--surface));
+  border-radius: 3px 1px 4px 2px;
+  background-image: linear-gradient(color-mix(in oklab, var(--surface) 83%, transparent), color-mix(in oklab, var(--surface) 89%, transparent)), url("./assets/torn-paper-interface-texture.jpg");
+  background-size: cover;
+}
+:root[data-theme="paper"] .content-heading::after {
+  width: 100%;
+  height: 3px;
+  background: repeating-linear-gradient(90deg, var(--primary) 0 6px, transparent 6px 11px, var(--lime) 11px 15px, transparent 15px 21px);
+}
+:root[data-theme="paper"] .community-style-bar > span {
+  border-left-color: var(--primary);
+  transform: rotate(-1deg);
+}
+:root[data-theme="paper"] .theme-menu,
+:root[data-theme="paper"] .theme-option,
+:root[data-theme="paper"] .theme-trigger { border-radius: 2px; }
+:root[data-theme="paper"] .theme-option[aria-pressed="true"] {
+  border-color: var(--primary);
+  background: color-mix(in oklab, var(--primary) 12%, var(--surface));
+}
+:root[data-theme="paper"] .swatch-paper i:first-child { background: var(--surface-deep); }
+:root[data-theme="paper"] .swatch-paper i:nth-child(2) { background: var(--primary); }
+:root[data-theme="paper"] .swatch-paper i:nth-child(3) { background: var(--lime); }
 @media (max-width: 760px) {
   .app-shell { background-attachment: scroll; }
   .community-style-bar > span { min-height: 29px; font-size: 8px; }
