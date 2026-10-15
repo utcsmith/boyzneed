@@ -28,6 +28,7 @@ import { lovable } from "@/integrations/lovable";
 import { supabase } from "@/integrations/supabase/client";
 import type { Tables } from "@/integrations/supabase/types";
 import nightshiftCharm from "@/assets/nightshift-charm.png";
+import nightshiftStudio from "@/assets/nightshift-studio.jpg";
 import { ThemePicker } from "@/components/theme-picker";
 
 type Profile = Tables<"profiles">;
@@ -376,8 +377,8 @@ function FriendsSpace() {
   if (!user) {
     return (
       <main className="entry-page">
-        <div className="entry-scene" aria-hidden="true" />
-        <div className="entry-nav"><Brand /><div className="entry-nav-actions"><span className="private-mark"><span className="status-dot" /> FRIENDS ONLY</span><ThemePicker /></div></div>
+        <img className="entry-scene" src={nightshiftStudio} alt="Chrome star sculpture with lime and pink charms" width={1536} height={1024} />
+        <div className="entry-nav"><Brand /><div className="entry-nav-actions"><span className="private-mark"><span className="status-dot" /> FRIENDS ONLY</span></div></div>
         <div className="entry-layout">
           <section className="entry-copy">
             <div className="eyebrow"><Sparkles size={14} /> YOUR PEOPLE. YOUR SPACE.</div>
