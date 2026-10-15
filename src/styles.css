@@ -798,3 +798,50 @@ button { cursor: pointer; }
   .app-shell { background-attachment: scroll; }
   .community-style-bar > span { min-height: 29px; font-size: 8px; }
 }
+
+/* Public welcome screen keeps its original neon-night styling, independent of saved themes. */
+:root[data-theme="neon"] {
+  --background: oklch(0.13 0.015 285);
+  --foreground: oklch(0.94 0.012 90);
+  --card: oklch(0.17 0.018 285);
+  --card-foreground: oklch(0.94 0.012 90);
+  --popover: oklch(0.17 0.018 285);
+  --popover-foreground: oklch(0.94 0.012 90);
+  --primary: oklch(0.91 0.27 125);
+  --primary-foreground: oklch(0.17 0.03 130);
+  --secondary: oklch(0.22 0.025 285);
+  --secondary-foreground: oklch(0.92 0.015 90);
+  --muted: oklch(0.22 0.018 285);
+  --muted-foreground: oklch(0.63 0.018 285);
+  --accent: oklch(0.24 0.035 330);
+  --accent-foreground: oklch(0.9 0.12 350);
+  --border: oklch(0.31 0.022 285);
+  --input: oklch(0.26 0.02 285);
+  --ring: oklch(0.91 0.27 125);
+  --lime: oklch(0.91 0.27 125);
+  --pink: oklch(0.72 0.25 350);
+  --violet: oklch(0.66 0.2 300);
+  --surface-deep: oklch(0.105 0.013 285);
+  --surface: oklch(0.17 0.018 285);
+  --surface-raised: oklch(0.205 0.02 285);
+  --line: oklch(0.32 0.02 285 / 55%);
+  --hero-ink: oklch(0.97 0.008 90);
+  --hero-muted: oklch(0.78 0.012 285);
+  --hero-base: oklch(0.12 0.006 285);
+  --shadow-ink: oklch(0 0 0 / 32%);
+}
+:root[data-theme="neon"] .entry-page {
+  background-image: radial-gradient(ellipse at 22% 66%, oklch(0.23 0.08 130 / 18%), transparent 32%), radial-gradient(ellipse at 67% 18%, oklch(0.22 0.07 330 / 13%), transparent 29%);
+}
+:root[data-theme="neon"] .entry-scene {
+  object-position: 34% center;
+  opacity: .8;
+  mix-blend-mode: normal;
+}
+:root[data-theme="neon"] .entry-page .auth-panel {
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--primary);
+  border-radius: 5px;
+  background: var(--surface);
+  box-shadow: 8px 8px 0 color-mix(in oklab, var(--pink) 20%, transparent);
+}

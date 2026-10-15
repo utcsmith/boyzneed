@@ -160,12 +160,16 @@ function FriendsSpace() {
     void supabase.auth.getUser().then(({ data }) => {
       if (!alive) return;
       setUser(data.user ? { id: data.user.id, email: data.user.email ?? undefined } : null);
+      if (!data.user) document.documentElement.dataset["theme"] = "neon";
       setAuthReady(true);
     });
     const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
       if (!alive) return;
       setUser(session?.user ? { id: session.user.id, email: session.user.email ?? undefined } : null);
-      if (!session?.user) setProfile(null);
+      if (!session?.user) {
+        setProfile(null);
+        document.documentElement.dataset["theme"] = "neon";
+      }
     });
     return () => { alive = false; listener.subscription.unsubscribe(); };
   }, []);
