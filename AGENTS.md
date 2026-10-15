@@ -9,5 +9,5 @@
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
 
-- Keep visual themes in global semantic CSS tokens and apply their graphic treatments through the root data-theme attribute; this keeps every screen and portaled control consistent.
+- Keep selectable theme tokens and treatments in global CSS via the root data-theme; keep the signed-out entry on a transient, non-persisted neon look and expose saved theme switching only after authentication, so public presentation stays independent of personal preferences.
 - Keep theme preferences in browser storage, read after hydration; theme changes are personal and never alter group data.

@@ -12,3 +12,8 @@
 - [x] Add the torn-paper collage as a selectable third personal theme.
 - [x] Keep shared photos and post images free of theme overlays.
 - [x] Verify the style picker and paper styling in the preview.
+
+# Public homepage and signed-in themes
+- [x] Restore the original lime-green and pink welcome page, including its artwork.
+- [x] Keep personal theme switching, including Torn Paper, inside signed-in screens.
+- [ ] Verify the public page ignores a saved Torn Paper preference.
