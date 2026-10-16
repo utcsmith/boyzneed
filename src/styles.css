@@ -210,33 +210,33 @@
 }
 
 :root[data-theme="paper"] {
-  --background: oklch(0.13 0.009 250);
-  --foreground: oklch(0.94 0.015 80);
-  --card: oklch(0.18 0.012 250);
-  --card-foreground: oklch(0.94 0.015 80);
-  --popover: oklch(0.17 0.012 250);
-  --popover-foreground: oklch(0.94 0.015 80);
-  --primary: oklch(0.78 0.16 72);
-  --primary-foreground: oklch(0.16 0.014 250);
-  --secondary: oklch(0.23 0.014 250);
-  --secondary-foreground: oklch(0.94 0.015 80);
-  --muted: oklch(0.23 0.012 250);
-  --muted-foreground: oklch(0.71 0.018 70);
-  --accent: oklch(0.28 0.035 70);
-  --accent-foreground: oklch(0.96 0.02 80);
-  --border: oklch(0.56 0.07 70 / 75%);
-  --input: oklch(0.26 0.015 250);
-  --ring: oklch(0.78 0.16 72);
-  --lime: oklch(0.86 0.12 88);
-  --pink: oklch(0.76 0.17 48);
+  --background: oklch(0.18 0.009 65);
+  --foreground: oklch(0.96 0.018 84);
+  --card: oklch(0.91 0.025 84);
+  --card-foreground: oklch(0.19 0.012 65);
+  --popover: oklch(0.91 0.025 84);
+  --popover-foreground: oklch(0.19 0.012 65);
+  --primary: oklch(0.79 0.16 76);
+  --primary-foreground: oklch(0.17 0.012 65);
+  --secondary: oklch(0.84 0.022 83);
+  --secondary-foreground: oklch(0.2 0.012 65);
+  --muted: oklch(0.83 0.02 84);
+  --muted-foreground: oklch(0.37 0.014 65);
+  --accent: oklch(0.78 0.16 76);
+  --accent-foreground: oklch(0.17 0.012 65);
+  --border: oklch(0.31 0.014 65);
+  --input: oklch(0.84 0.022 83);
+  --ring: oklch(0.79 0.16 76);
+  --lime: oklch(0.85 0.16 82);
+  --pink: oklch(0.73 0.17 38);
   --violet: oklch(0.7 0.08 225);
-  --surface-deep: oklch(0.1 0.008 250);
-  --surface: oklch(0.18 0.012 250);
-  --surface-raised: oklch(0.23 0.014 250);
-  --line: oklch(0.65 0.075 74 / 65%);
+  --surface-deep: oklch(0.17 0.009 65);
+  --surface: oklch(0.91 0.025 84);
+  --surface-raised: oklch(0.83 0.02 84);
+  --line: oklch(0.38 0.018 65 / 82%);
   --hero-ink: oklch(0.97 0.012 80);
-  --hero-muted: oklch(0.81 0.025 75);
-  --hero-base: oklch(0.105 0.008 250);
+  --hero-muted: oklch(0.82 0.018 80);
+  --hero-base: oklch(0.17 0.009 65);
   --theme-ice: oklch(0.7 0.08 225);
 }
 
@@ -732,11 +732,24 @@ button { cursor: pointer; }
   mix-blend-mode: normal;
 }
 :root[data-theme="paper"] .app-shell {
-  background-image: linear-gradient(color-mix(in oklab, var(--background) 86%, transparent), color-mix(in oklab, var(--background) 90%, transparent)), url("./assets/torn-paper-interface-texture.jpg");
+  background-color: var(--background);
+  background-image: linear-gradient(color-mix(in oklab, var(--background) 30%, transparent), color-mix(in oklab, var(--background) 38%, transparent)), url("./assets/torn-paper-interface-texture.jpg");
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
+}
+:root[data-theme="paper"] .left-rail {
+  background-color: var(--surface-deep);
+  background-image: linear-gradient(color-mix(in oklab, var(--surface-deep) 58%, transparent), color-mix(in oklab, var(--surface-deep) 66%, transparent)), url("./assets/torn-paper-interface-texture.jpg");
+  background-size: cover;
+  background-position: left center;
+  border-right: 2px solid var(--primary);
 }
 :root[data-theme="paper"] .profile-cover {
-  border: 2px solid var(--line);
-  background-image: linear-gradient(90deg, color-mix(in oklab, var(--surface-raised) 48%, transparent), color-mix(in oklab, var(--surface-raised) 58%, transparent)), url("./assets/torn-paper-interface-texture.jpg");
+  border: 2px solid var(--card);
+  color: var(--card-foreground);
+  background-image: linear-gradient(90deg, color-mix(in oklab, var(--card) 58%, transparent), color-mix(in oklab, var(--card) 34%, transparent)), url("./assets/torn-paper-interface-texture.jpg");
+  background-size: cover;
 }
 :root[data-theme="paper"] .group-switcher,
 :root[data-theme="paper"] .composer,
@@ -744,11 +757,103 @@ button { cursor: pointer; }
 :root[data-theme="paper"] .post-card,
 :root[data-theme="paper"] .chat-panel,
 :root[data-theme="paper"] .auth-panel {
-  border-color: color-mix(in oklab, var(--line) 76%, var(--surface));
+  border: 1px solid color-mix(in oklab, var(--card-foreground) 34%, var(--card));
   border-radius: 3px 1px 4px 2px;
-  background-image: linear-gradient(color-mix(in oklab, var(--surface) 83%, transparent), color-mix(in oklab, var(--surface) 89%, transparent)), url("./assets/torn-paper-interface-texture.jpg");
+  background-color: var(--card);
+  background-image: linear-gradient(color-mix(in oklab, var(--card) 58%, transparent), color-mix(in oklab, var(--card) 64%, transparent)), url("./assets/torn-paper-interface-texture.jpg");
+  background-size: cover, cover;
+  box-shadow: 4px 4px 0 color-mix(in oklab, var(--foreground) 16%, transparent), 8px 8px 0 color-mix(in oklab, var(--background) 70%, transparent);
+}
+:root[data-theme="paper"] .group-switcher,
+:root[data-theme="paper"] .composer,
+:root[data-theme="paper"] .share-composer,
+:root[data-theme="paper"] .post-card,
+:root[data-theme="paper"] .sticker-note {
+  color: var(--card-foreground);
+}
+:root[data-theme="paper"] .group-switcher strong,
+:root[data-theme="paper"] .composer textarea,
+:root[data-theme="paper"] .post-author strong,
+:root[data-theme="paper"] .post-comment strong,
+:root[data-theme="paper"] .post-caption,
+:root[data-theme="paper"] .share-composer-heading h2,
+:root[data-theme="paper"] .sticker-note strong {
+  color: var(--card-foreground);
+}
+:root[data-theme="paper"] .group-switcher small,
+:root[data-theme="paper"] .post-author span,
+:root[data-theme="paper"] .post-comment,
+:root[data-theme="paper"] .composer-hint,
+:root[data-theme="paper"] .share-composer-heading p,
+:root[data-theme="paper"] .sticker-note span {
+  color: color-mix(in oklab, var(--card-foreground) 72%, var(--card));
+}
+:root[data-theme="paper"] .composer textarea,
+:root[data-theme="paper"] .comment-form input,
+:root[data-theme="paper"] .share-composer input,
+:root[data-theme="paper"] .share-composer textarea {
+  color: var(--card-foreground);
+}
+:root[data-theme="paper"] .composer textarea::placeholder,
+:root[data-theme="paper"] .comment-form input::placeholder,
+:root[data-theme="paper"] .share-composer input::placeholder,
+:root[data-theme="paper"] .share-composer textarea::placeholder {
+  color: color-mix(in oklab, var(--card-foreground) 58%, var(--card));
+}
+:root[data-theme="paper"] .post-header,
+:root[data-theme="paper"] .post-actions,
+:root[data-theme="paper"] .comment-form,
+:root[data-theme="paper"] .composer-bottom {
+  border-color: color-mix(in oklab, var(--card-foreground) 22%, transparent);
+}
+:root[data-theme="paper"] .post-card .icon-plain,
+:root[data-theme="paper"] .post-card .comment-count,
+:root[data-theme="paper"] .post-card .group-only {
+  color: color-mix(in oklab, var(--card-foreground) 76%, var(--card));
+}
+:root[data-theme="paper"] .post-image-wrap { background: var(--surface-deep); }
+:root[data-theme="paper"] .profile-cover::after { opacity: .12; }
+:root[data-theme="paper"] .cover-text { color: var(--card-foreground); text-shadow: 1px 2px 0 var(--card); }
+:root[data-theme="paper"] .cover-spark { color: var(--primary); }
+:root[data-theme="paper"] .chat-panel {
+  border-color: color-mix(in oklab, var(--foreground) 35%, transparent);
+  background-color: var(--surface-deep);
+  background-image: linear-gradient(color-mix(in oklab, var(--surface-deep) 44%, transparent), color-mix(in oklab, var(--surface-deep) 56%, transparent)), url("./assets/torn-paper-interface-texture.jpg");
   background-size: cover;
 }
+:root[data-theme="paper"] .chat-topline,
+:root[data-theme="paper"] .chat-compose {
+  background: color-mix(in oklab, var(--surface-deep) 76%, transparent);
+}
+:root[data-theme="paper"] .message-row:not(.mine) .message-bubble {
+  border-color: color-mix(in oklab, var(--foreground) 35%, transparent);
+  color: var(--foreground);
+  background: color-mix(in oklab, var(--surface-deep) 75%, var(--card-foreground));
+}
+:root[data-theme="paper"] .chat-compose input {
+  color: var(--foreground);
+  background: color-mix(in oklab, var(--surface-deep) 70%, transparent);
+}
+:root[data-theme="paper"] .content-heading > div > p,
+:root[data-theme="paper"] .content-heading .eyebrow,
+:root[data-theme="paper"] .section-label,
+:root[data-theme="paper"] .right-rail .muted-text,
+:root[data-theme="paper"] .rail-quote span,
+:root[data-theme="paper"] .files-aside-copy,
+:root[data-theme="paper"] .profile-aside-text,
+:root[data-theme="paper"] .member-count {
+  color: var(--hero-muted);
+}
+:root[data-theme="paper"] .theme-menu {
+  border: 1px solid var(--card-foreground);
+  background-color: var(--card);
+  background-image: linear-gradient(color-mix(in oklab, var(--card) 66%, transparent), color-mix(in oklab, var(--card) 72%, transparent)), url("./assets/torn-paper-interface-texture.jpg");
+  color: var(--card-foreground);
+}
+:root[data-theme="paper"] .theme-menu-heading,
+:root[data-theme="paper"] .theme-option-copy strong { color: var(--card-foreground); }
+:root[data-theme="paper"] .theme-option-copy small { color: color-mix(in oklab, var(--card-foreground) 72%, var(--card)); }
+:root[data-theme="paper"] .theme-option { color: var(--card-foreground); }
 :root[data-theme="paper"] .content-heading::after {
   width: 100%;
   height: 3px;
