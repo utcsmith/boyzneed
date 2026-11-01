@@ -179,34 +179,34 @@
 }
 
 :root[data-theme="garba"] {
-  --background: oklch(0.12 0.035 350);
-  --foreground: oklch(0.96 0.025 82);
-  --card: oklch(0.17 0.04 350);
-  --card-foreground: oklch(0.96 0.025 82);
-  --popover: oklch(0.17 0.04 350);
-  --popover-foreground: oklch(0.96 0.025 82);
-  --primary: oklch(0.73 0.2 350);
-  --primary-foreground: oklch(0.18 0.035 350);
-  --secondary: oklch(0.25 0.05 350);
-  --secondary-foreground: oklch(0.95 0.03 82);
-  --muted: oklch(0.24 0.04 350);
-  --muted-foreground: oklch(0.76 0.05 40);
-  --accent: oklch(0.29 0.07 55);
-  --accent-foreground: oklch(0.95 0.11 85);
-  --border: oklch(0.56 0.11 48 / 72%);
-  --input: oklch(0.33 0.055 350);
-  --ring: oklch(0.82 0.15 82);
-  --lime: oklch(0.83 0.15 82);
-  --pink: oklch(0.73 0.2 350);
-  --violet: oklch(0.7 0.11 205);
-  --surface-deep: oklch(0.095 0.03 350);
-  --surface: oklch(0.17 0.04 350);
-  --surface-raised: oklch(0.24 0.05 350);
-  --line: oklch(0.62 0.12 53 / 64%);
-  --hero-ink: oklch(0.97 0.025 82);
-  --hero-muted: oklch(0.8 0.05 48);
-  --hero-base: oklch(0.1 0.03 350);
-  --theme-ice: oklch(0.7 0.11 205);
+  --background: oklch(0.135 0.028 350);
+  --foreground: oklch(0.95 0.018 82);
+  --card: oklch(0.18 0.032 350);
+  --card-foreground: oklch(0.95 0.018 82);
+  --popover: oklch(0.18 0.032 350);
+  --popover-foreground: oklch(0.95 0.018 82);
+  --primary: oklch(0.75 0.1 350);
+  --primary-foreground: oklch(0.19 0.028 350);
+  --secondary: oklch(0.26 0.04 350);
+  --secondary-foreground: oklch(0.94 0.02 82);
+  --muted: oklch(0.25 0.032 350);
+  --muted-foreground: oklch(0.77 0.04 40);
+  --accent: oklch(0.3 0.055 55);
+  --accent-foreground: oklch(0.94 0.08 85);
+  --border: oklch(0.56 0.06 48 / 60%);
+  --input: oklch(0.34 0.042 350);
+  --ring: oklch(0.82 0.09 82);
+  --lime: oklch(0.83 0.09 82);
+  --pink: oklch(0.75 0.1 350);
+  --violet: oklch(0.72 0.06 205);
+  --surface-deep: oklch(0.105 0.024 350);
+  --surface: oklch(0.18 0.032 350);
+  --surface-raised: oklch(0.25 0.04 350);
+  --line: oklch(0.6 0.07 53 / 55%);
+  --hero-ink: oklch(0.96 0.018 82);
+  --hero-muted: oklch(0.8 0.04 48);
+  --hero-base: oklch(0.11 0.024 350);
+  --theme-ice: oklch(0.72 0.06 205);
 }
 
 :root[data-theme="paper"] {
@@ -641,12 +641,12 @@ button { cursor: pointer; }
 
 /* BGMI squad HUD is the default interface; Garba swaps in a crafted raas-night frame. */
 :root[data-theme="bgmi"] {
-  --theme-ice: oklch(0.7 0.09 225);
-  --theme-bolt: oklch(0.84 0.16 84);
+  --theme-ice: oklch(0.72 0.05 225);
+  --theme-bolt: oklch(0.82 0.085 84);
 }
 :root[data-theme="garba"] {
-  --theme-bolt: oklch(0.82 0.15 82);
-  --theme-ice: oklch(0.7 0.11 205);
+  --theme-bolt: oklch(0.82 0.09 82);
+  --theme-ice: oklch(0.72 0.06 205);
 }
 .entry-scene {
   background-image: url("./assets/bgmi-hud-texture.jpg");
@@ -666,7 +666,9 @@ button { cursor: pointer; }
   background-position: center;
   background-attachment: fixed;
 }
-.left-rail, .main-content { position: relative; }
+@media (min-width: 761px) {
+  .left-rail, .main-content { position: relative; }
+}
 .left-rail { border-right-color: color-mix(in oklab, var(--primary) 34%, var(--line)); }
 .group-switcher, .composer, .share-composer, .post-card, .chat-panel, .profile-cover, .auth-panel, .theme-menu {
   border-radius: 0;
