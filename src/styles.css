@@ -468,7 +468,10 @@ button { cursor: pointer; }
 .profile-header { position: relative; padding: 0 18px 16px; }
 .profile-avatar-large { position: relative; width: 100px; height: 100px; margin-top: -48px; margin-bottom: 8px; padding: 4px; border-radius: 50%; background: var(--background); }
 .profile-avatar-large .avatar { width: 92px; height: 92px; }
-.avatar-edit { position: absolute; right: 0; bottom: 4px; width: 29px; height: 29px; border: 1px solid var(--background); border-radius: 50%; color: var(--primary-foreground); background: var(--lime); }
+.avatar-edit { position: absolute; right: 0; bottom: 4px; display: grid; place-items: center; width: 29px; height: 29px; padding: 0; cursor: pointer; border: 1px solid var(--background); border-radius: 50%; color: var(--primary-foreground); background: var(--lime); }
+.avatar-edit:disabled { opacity: .7; cursor: progress; }
+.avatar-edit-busy { width: 12px; height: 12px; border: 2px solid color-mix(in oklab, var(--primary-foreground) 35%, transparent); border-top-color: var(--primary-foreground); border-radius: 50%; animation: avatar-spin .8s linear infinite; }
+@keyframes avatar-spin { to { transform: rotate(360deg); } }
 .profile-actions { position: absolute; top: 15px; right: 12px; }
 .profile-actions button { border-color: var(--line); color: var(--foreground); font-size: 10px; }
 .profile-header h2 { margin: 7px 0 4px; font-size: 19px; }
