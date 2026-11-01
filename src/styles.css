@@ -144,38 +144,38 @@
 }
 
 :root {
-  --background: oklch(0.12 0.009 250);
-  --foreground: oklch(0.94 0.012 85);
-  --card: oklch(0.16 0.012 250);
-  --card-foreground: oklch(0.94 0.012 85);
-  --popover: oklch(0.16 0.012 250);
-  --popover-foreground: oklch(0.94 0.012 85);
-  --primary: oklch(0.72 0.17 52);
-  --primary-foreground: oklch(0.15 0.014 250);
-  --secondary: oklch(0.21 0.015 250);
-  --secondary-foreground: oklch(0.92 0.015 85);
-  --muted: oklch(0.21 0.012 250);
-  --muted-foreground: oklch(0.68 0.016 245);
-  --accent: oklch(0.25 0.035 65);
-  --accent-foreground: oklch(0.91 0.14 80);
-  --destructive: oklch(0.66 0.2 25);
+  --background: oklch(0.14 0.012 250);
+  --foreground: oklch(0.93 0.01 85);
+  --card: oklch(0.175 0.012 250);
+  --card-foreground: oklch(0.93 0.01 85);
+  --popover: oklch(0.175 0.012 250);
+  --popover-foreground: oklch(0.93 0.01 85);
+  --primary: oklch(0.74 0.085 64);
+  --primary-foreground: oklch(0.16 0.014 250);
+  --secondary: oklch(0.22 0.014 250);
+  --secondary-foreground: oklch(0.91 0.013 85);
+  --muted: oklch(0.22 0.012 250);
+  --muted-foreground: oklch(0.69 0.014 245);
+  --accent: oklch(0.26 0.03 65);
+  --accent-foreground: oklch(0.9 0.09 80);
+  --destructive: oklch(0.66 0.16 25);
   --destructive-foreground: oklch(0.98 0.01 90);
-  --border: oklch(0.34 0.018 245);
-  --input: oklch(0.27 0.014 245);
-  --ring: oklch(0.72 0.17 52);
+  --border: oklch(0.33 0.016 245);
+  --input: oklch(0.27 0.013 245);
+  --ring: oklch(0.74 0.085 64);
   --radius: 0.4rem;
-  --lime: oklch(0.83 0.15 84);
-  --pink: oklch(0.72 0.17 52);
-  --violet: oklch(0.7 0.09 225);
-  --surface-deep: oklch(0.09 0.008 250);
-  --surface: oklch(0.16 0.012 250);
-  --surface-raised: oklch(0.205 0.016 250);
-  --line: oklch(0.4 0.025 245 / 58%);
-  --hero-ink: oklch(0.97 0.008 85);
-  --hero-muted: oklch(0.76 0.016 245);
-  --hero-base: oklch(0.105 0.01 250);
-  --shadow-ink: oklch(0 0 0 / 32%);
-  --theme-ice: oklch(0.7 0.09 225);
+  --lime: oklch(0.82 0.085 84);
+  --pink: oklch(0.74 0.085 64);
+  --violet: oklch(0.72 0.05 225);
+  --surface-deep: oklch(0.105 0.009 250);
+  --surface: oklch(0.175 0.012 250);
+  --surface-raised: oklch(0.215 0.014 250);
+  --line: oklch(0.42 0.02 245 / 52%);
+  --hero-ink: oklch(0.96 0.008 85);
+  --hero-muted: oklch(0.76 0.014 245);
+  --hero-base: oklch(0.115 0.011 250);
+  --shadow-ink: oklch(0 0 0 / 28%);
+  --theme-ice: oklch(0.72 0.05 225);
 }
 
 :root[data-theme="garba"] {
