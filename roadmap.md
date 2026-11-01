@@ -13,6 +13,12 @@
 - [x] Keep shared photos and post images free of theme overlays.
 - [x] Verify the style picker and paper styling in the preview.
 
+# Calm colors, bottom tabs and profile photos
+- [x] Mute the BGMI and Garba palettes to a calmer, softer feel.
+- [x] Keep the phone-size tab switcher fixed at the bottom.
+- [x] Add profile photo upload from the camera button on the profile page.
+- [x] Verify tabs, photo upload, tests, and the calm palette in the preview.
+
 # Public homepage and signed-in themes
 - [x] Restore the original lime-green and pink welcome page, including its artwork.
 - [x] Keep personal theme switching, including Torn Paper, inside signed-in screens.
