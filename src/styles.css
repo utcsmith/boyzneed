@@ -664,9 +664,17 @@ button { cursor: pointer; }
   background-position: center;
 }
 .app-shell {
-  background-image: linear-gradient(color-mix(in oklab, var(--background) 95%, transparent), color-mix(in oklab, var(--background) 95%, transparent)), url("./assets/bgmi-hud-texture.jpg");
+  background-image: url("./assets/bgmi-squad-characters.png"), linear-gradient(color-mix(in oklab, var(--background) 95%, transparent), color-mix(in oklab, var(--background) 88%, transparent)), url("./assets/bgmi-hud-texture.jpg");
+  background-size: 100% auto, cover, cover;
+  background-position: bottom center, center, center;
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-attachment: fixed, fixed, fixed;
+}
+:root[data-theme="garba"] .app-shell, :root[data-theme="paper"] .app-shell {
+  background-image: linear-gradient(color-mix(in oklab, var(--background) 89%, transparent), color-mix(in oklab, var(--background) 92%, transparent)), url("./assets/garba-interface-texture.jpg");
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   background-attachment: fixed;
 }
 @media (min-width: 761px) {
