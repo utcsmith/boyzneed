@@ -22,4 +22,4 @@
 # Public homepage and signed-in themes
 - [x] Restore the original lime-green and pink welcome page, including its artwork.
 - [x] Keep personal theme switching, including Torn Paper, inside signed-in screens.
-- [ ] Verify the public page ignores a saved Torn Paper preference.
+- [x] Verify the public page ignores a saved Torn Paper preference.
