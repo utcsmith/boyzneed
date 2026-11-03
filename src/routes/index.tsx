@@ -10,10 +10,12 @@ import {
   Heart,
   ImagePlus,
   LogOut,
+  Menu,
   MessageCircle,
   MoreHorizontal,
   Paperclip,
   Plus,
+  Search,
   Send,
   Sparkles,
   Users,
@@ -76,6 +78,8 @@ function FriendsSpace() {
   const [bio, setBio] = useState("");
   const [pickedVibes, setPickedVibes] = useState<string[]>([]);
   const [view, setView] = useState<View>("home");
+  const [search, setSearch] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
   const [posts, setPosts] = useState<FeedPost[]>([]);
   const [members, setMembers] = useState<Profile[]>([]);
   const [messages, setMessages] = useState<GroupMessage[]>([]);
@@ -224,7 +228,12 @@ function FriendsSpace() {
 
   useEffect(() => { chatEnd.current?.scrollIntoView({ behavior: "smooth" }); }, [messages]);
 
-  const visiblePosts = useMemo(() => view === "profile" ? posts.filter((post) => post.author_id === user?.id) : posts, [posts, user?.id, view]);
+  const visiblePosts = useMemo(() => {
+    const base = view === "profile" ? posts.filter((post) => post.author_id === user?.id) : posts;
+    const query = search.trim().toLowerCase();
+    if (!query) return base;
+    return base.filter((post) => (post.caption ?? "").toLowerCase().includes(query) || (post.profile?.username ?? "").toLowerCase().includes(query));
+  }, [posts, user?.id, view, search]);
 
   async function submitAuth(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -463,8 +472,12 @@ function FriendsSpace() {
       </aside>
 
       <main className={`main-content ${view === "chat" ? "chat-main" : ""}`}>
-        <div className="community-style-bar"><span>✳ &nbsp; NIGHTSHIFT SOCIAL CLUB</span><ThemePicker /></div>
-        <header className="mobile-topbar"><Brand /><button type="button" className="mobile-profile" onClick={() => setView("profile")}><Avatar profile={profile} size="sm" /></button></header>
+        <header className="app-topbar">
+          <button type="button" className="topbar-menu" aria-label="Open menu" onClick={() => setMenuOpen(true)}><Menu size={20} /></button>
+          <div className="topbar-search"><Search size={15} /><input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search the group…" aria-label="Search posts" /></div>
+          <ThemePicker />
+          <button type="button" className="topbar-avatar" aria-label="Your profile" onClick={() => setView("profile")}><Avatar profile={profile} size="sm" /></button>
+        </header>
         <div className="content-heading"><div><div className="eyebrow"><span className="status-dot" /> YOUR LITTLE CORNER OF THE INTERNET</div><h1>{view === "home" ? <>the <span>feed.</span></> : view === "chat" ? <>say <span>anything.</span></> : view === "files" ? <>good <span>things.</span></> : <>that’s <span>you.</span></>}</h1><p>{view === "home" ? "The latest from your favorite people." : view === "chat" ? "The group chat, minus the chaos of 200 unread texts." : view === "files" ? "Notes, files, links — all in one spot." : "Your corner of the group."}</p></div><div className="heading-date"><span className="live-badge"><span className="status-dot" /> CLOSE FRIENDS</span><span>EST. AFTER THE GROUP CHAT</span></div></div>
 
         {pageMessage && <div className="page-alert" role="status">{pageMessage}<button type="button" aria-label="Dismiss" onClick={() => setPageMessage("")}><X size={16} /></button></div>}
@@ -488,6 +501,17 @@ function FriendsSpace() {
 
         <footer className="app-footer"><span>THE INNER CIRCLE · {members.length} FRIENDS</span><button type="button" onClick={() => setView("home")}>back to the good stuff ↑</button></footer>
       </main>
+      {menuOpen && <div className="drawer-backdrop" onClick={() => setMenuOpen(false)}>
+        <div className="drawer-panel" role="dialog" aria-modal="true" aria-label="Group menu" onClick={(event) => event.stopPropagation()}>
+          <div className="drawer-head"><Brand /><button type="button" className="icon-plain" aria-label="Close menu" onClick={() => setMenuOpen(false)}><X size={18} /></button></div>
+          <div className="group-switcher"><span className="group-symbol">✳</span><span><strong>the inner circle</strong><small>{members.length || 1} besties</small></span><ChevronDown size={15} /></div>
+          <Button variant="outline" className="drawer-invite" onClick={() => void copyInvite()}><Plus size={15} /> Copy invite code{activeInviteCode ? ` · ${activeInviteCode}` : ""}</Button>
+          <div className="section-label">YOUR PEOPLE <span>{members.length.toString().padStart(2, "0")}</span></div>
+          <div className="drawer-people">{members.map((member, index) => <div className="person-row" key={member.id}><Avatar profile={member} size="sm" accent={index} /><span><strong>{member.id === user.id ? "you" : `@${member.username}`}</strong><small>{member.vibe_tags?.[0] ?? "one of the crew"}</small></span></div>)}</div>
+          <div className="drawer-spacer" />
+          <Button variant="outline" onClick={() => void signOut()}><LogOut size={15} /> Log out</Button>
+        </div>
+      </div>}
     </div>
   );
 }
