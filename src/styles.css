@@ -856,9 +856,6 @@ button { cursor: pointer; }
   height: 3px;
   background: repeating-linear-gradient(90deg, var(--primary) 0 6px, transparent 6px 11px, var(--lime) 11px 15px, transparent 15px 21px);
 }
-  border-left-color: var(--primary);
-  transform: rotate(-1deg);
-}
 :root[data-theme="paper"] .theme-menu,
 :root[data-theme="paper"] .theme-option,
 :root[data-theme="paper"] .theme-trigger { border-radius: 2px; }
