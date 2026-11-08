@@ -23,3 +23,8 @@
 - [x] Restore the original lime-green and pink welcome page, including its artwork.
 - [x] Keep personal theme switching, including Torn Paper, inside signed-in screens.
 - [x] Verify the public page ignores a saved Torn Paper preference.
+
+# Profile backdrop and post controls
+- [ ] Let users upload or replace a profile cover image and choose tactical character/loadout backdrops.
+- [ ] Add a safe delete action for the signed-in user's posts.
+- [ ] Verify profile cover changes and own-post deletion on mobile and desktop.

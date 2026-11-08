@@ -11,3 +11,4 @@
 
 - Keep selectable theme tokens and treatments in global CSS via the root data-theme; keep the signed-out entry on a transient, non-persisted neon look and expose saved theme switching only after authentication, so public presentation stays independent of personal preferences.
 - Keep theme preferences in browser storage, read after hydration; theme changes are personal and never alter group data.
+- Store profile cover uploads and selected profile backdrop treatments on the user's profile row; render private uploads through signed storage URLs.

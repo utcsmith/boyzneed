@@ -172,6 +172,8 @@ export type Database = {
         Row: {
           avatar_path: string | null
           bio: string
+          cover_path: string | null
+          cover_style: string
           created_at: string
           id: string
           username: string
@@ -180,6 +182,8 @@ export type Database = {
         Insert: {
           avatar_path?: string | null
           bio?: string
+          cover_path?: string | null
+          cover_style?: string
           created_at?: string
           id: string
           username: string
@@ -188,6 +192,8 @@ export type Database = {
         Update: {
           avatar_path?: string | null
           bio?: string
+          cover_path?: string | null
+          cover_style?: string
           created_at?: string
           id?: string
           username?: string
