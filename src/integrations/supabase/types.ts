@@ -250,6 +250,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      delete_own_post: { Args: { p_post_id: string }; Returns: undefined }
       is_group_member: { Args: never; Returns: boolean }
       join_friends_group: {
         Args: {

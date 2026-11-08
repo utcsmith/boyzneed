@@ -15,6 +15,13 @@
       "when": 1794124485004,
       "tag": "0001_profile_cover_customization",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1794124668965,
+      "tag": "0002_secure_post_removal",
+      "breakpoints": true
     }
   ]
 }
