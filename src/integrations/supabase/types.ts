@@ -172,6 +172,8 @@ export type Database = {
         Row: {
           avatar_path: string | null
           bio: string
+          cover_path: string | null
+          cover_style: string
           created_at: string
           id: string
           username: string
@@ -180,6 +182,8 @@ export type Database = {
         Insert: {
           avatar_path?: string | null
           bio?: string
+          cover_path?: string | null
+          cover_style?: string
           created_at?: string
           id: string
           username: string
@@ -188,6 +192,8 @@ export type Database = {
         Update: {
           avatar_path?: string | null
           bio?: string
+          cover_path?: string | null
+          cover_style?: string
           created_at?: string
           id?: string
           username?: string
@@ -244,6 +250,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      delete_own_post: { Args: { p_post_id: string }; Returns: undefined }
       is_group_member: { Args: never; Returns: boolean }
       join_friends_group: {
         Args: {
